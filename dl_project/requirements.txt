@@ -1,0 +1,6 @@
+# DL 项目依赖（与统计/ML 项目解耦）
+neuralforecast>=3.0
+utilsforecast>=0.9
+pandas>=2.0
+numpy>=1.24
+# 依赖 torch（neuralforecast 底层），需自行按环境安装 CPU 或 CUDA 版

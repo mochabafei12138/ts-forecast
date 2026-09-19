@@ -1,0 +1,32 @@
+# ============================================================
+# exp_baseline.yaml — 基线实验配置
+# 复用原 pipeline 的方案：per-SKU 最优模型
+# ============================================================
+inherit: base.yaml
+
+experiment:
+  name: exp_baseline
+  description: 基线方案 - 单变量模型 per-SKU 选择最优，CV 统一 SMAPE 评估
+
+# 参与本实验的模型（按顺序注册）
+models:
+  - name: AutoETS
+    type: statsforecast
+    model_class: AutoETS
+  - name: AutoARIMA
+    type: statsforecast
+    model_class: AutoARIMA
+  - name: AutoTheta
+    type: statsforecast
+    model_class: AutoTheta
+  - name: CES
+    type: statsforecast
+    model_class: AutoCES
+  - name: Prophet_tuned
+    type: prophet
+    use_holidays: true
+    tune: true
+  - name: Prophet_plain
+    type: prophet
+    use_holidays: false
+    tune: true

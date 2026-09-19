@@ -1,0 +1,10 @@
+# 运行时依赖（请在你的运行环境中安装）
+pandas>=2.0
+numpy>=1.24
+pyyaml>=6.0
+statsforecast>=1.7
+utilsforecast>=0.2
+# prophet 需单独安装（含 C++ 编译的 Stan 工具链，Windows 上可能较慢）
+prophet>=1.1
+# 可选：报告/可视化
+streamlit>=1.30

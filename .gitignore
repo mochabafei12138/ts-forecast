@@ -1,0 +1,27 @@
+# ========== Python ==========
+__pycache__/
+*.py[cod]
+*.egg-info/
+*.so
+
+# ========== 数据（体积大，不上传，需自行放置） ==========
+data/
+*.csv
+
+# ========== 实验缓存与产物 ==========
+runs/
+output/
+*.db
+*.sqlite
+
+# ========== 环境 ==========
+.env
+venv/
+.venv/
+__pypackages__/
+
+# ========== 系统与编辑器 ==========
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

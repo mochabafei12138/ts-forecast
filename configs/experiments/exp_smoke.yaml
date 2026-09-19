@@ -1,0 +1,14 @@
+# 冒烟测试配置：仅统计模型，快速验证框架各环节
+inherit: base.yaml
+
+experiment:
+  name: exp_smoke
+  description: 冒烟测试 - 仅 StatsForecast 统计模型，验证框架链路
+
+models:
+  - name: AutoETS
+    type: statsforecast
+    model_class: AutoETS
+  - name: AutoARIMA
+    type: statsforecast
+    model_class: AutoARIMA

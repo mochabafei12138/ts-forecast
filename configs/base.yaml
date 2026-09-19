@@ -1,0 +1,39 @@
+# ============================================================
+# base.yaml — 全局基础配置
+# 每个实验配置通过 inherit 引用本文件，并只覆盖需要改动的项
+# ============================================================
+
+# ---------- 数据路径 ----------
+data:
+  train_file: data/train.csv
+  test_file: data/test.csv
+
+# ---------- 预测参数（固定窗口） ----------
+forecast:
+  h: 365                 # 预测步长（天）
+  level: 95              # 置信区间水平
+
+# ---------- 交叉验证 ----------
+cv:
+  n_windows: 2           # 固定 CV 窗口数
+  step_size: 365         # 固定 CV 步长
+
+# ---------- StatsForecast 统计模型 ----------
+statsforecast:
+  season_length: 7
+
+# ---------- Prophet ----------
+prophet:
+  interval_width: 0.95
+  param_grid:            # 超参数搜索空间（组合数 = 笛卡尔积）
+    changepoint_prior_scale: [0.01, 0.1]
+    seasonality_prior_scale: [5.0, 10.0]
+    yearly_seasonality: [true, false]
+    weekly_seasonality: [true, false]
+    daily_seasonality: [false]
+    seasonality_mode: [additive, multiplicative]
+
+# ---------- 运行时目录 ----------
+paths:
+  runs_dir: runs         # 每次运行的输出目录（含缓存与快照）
+  db_file: experiments.db  # 实验追踪 SQLite 数据库
