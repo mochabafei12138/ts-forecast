@@ -1,5 +1,7 @@
 # 时间序列预测 · 多 SKU 销售预测系统
 
+> **在线看板**：[https://ts-forecast-ksqvm9vjadiybxxervcu3u.streamlit.app/](https://ts-forecast-ksqvm9vjadiybxxervcu3u.streamlit.app/)
+
 一套**可持续迭代**的多 SKU 销售时间序列预测流水线：预测 75 个 SKU（5 国 × 多商店 × 多产品）未来 365 天的日销量，在此过程中公平比较**统计模型 / 机器学习 / 深度学习**三类方法，并通过**跨范式 per-SKU 选优**为每个 SKU 挑选最合适的模型上线，做到防泄漏、可复现、可可视化。
 
 数据来自 Kaggle `playground-series-s3e19_Forecasting Mini-Course Sales`。
