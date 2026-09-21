@@ -68,9 +68,12 @@ class StatsForecastModel(ForecastModel):
             # statsforecast 各模型的预测列名并不总等于类名
             # （例如 AutoCES 的输出列是 'CES' 而非 'AutoCES'），
             # 故动态识别“非标识/非真实值列”作为预测列，再重命名为 yhat。
+            # 注意：reset_index() 会引入一个名为 'index' 的列（即行号），
+            # 必须排除，否则会把行号当成预测值（早期版本曾因此让 Auto* 模型
+            # 对每个 SKU 输出完全相同的伪预测，导致 SMAPE 失真）。
             pred_col = next(
                 (c for c in cv.columns
-                 if c not in ('unique_id', 'ds', 'cutoff', 'y')), None)
+                 if c not in ('unique_id', 'ds', 'cutoff', 'y', 'index')), None)
             if pred_col is not None:
                 cv = cv.rename(columns={pred_col: 'yhat'})
             cols = [c for c in ['unique_id', 'ds', 'cutoff', 'y', 'yhat']
@@ -92,7 +95,7 @@ class StatsForecastModel(ForecastModel):
         # 主预测列：非标识列中不带 -lo-/-hi- 后缀的列（列名不总等于类名，如 AutoCES→'CES'）
         main_col = next(
             (c for c in fc.columns
-             if c not in ('unique_id', 'ds')
+             if c not in ('unique_id', 'ds', 'index')
              and '-lo-' not in str(c) and '-hi-' not in str(c)), None)
         if main_col is None:
             return pd.DataFrame(
